@@ -26,7 +26,7 @@ func EightCron(c *cron.Cron) {
 }
 
 func SeventeentCron(c *cron.Cron) {
-	_ = c.AddFunc("00 00 17 * * *", func() {
+	_ = c.AddFunc("00 * * * * *", func() {
 		t := time.Now()
 		now := t.Format("20060102")
 		base_time := "1700"
