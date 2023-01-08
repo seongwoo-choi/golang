@@ -7,7 +7,6 @@ import (
 	"gopkg.in/gomail.v2"
 	"io"
 	"net/http"
-	"seongwoo/go/fiber/config"
 	"strconv"
 	"os"
 )
