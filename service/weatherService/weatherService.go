@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"seongwoo/go/fiber/config"
 	"strconv"
+	"os"
 )
 
 type GetWeatherDto struct {
@@ -153,8 +154,8 @@ func getWeathers(data []Forecast) []Weather {
 }
 
 func sendMail(text string) error {
-	email := config.Config("GMAIL_ID")
-	email_app_pwd := config.Config("GMAIL_APP_PWD")
+	email := os.Getenv("GMAIL_ID")
+	email_app_pwd := os.Getenv("GMAIL_APP_PWD")
 	msg := gomail.NewMessage()
 	msg.SetHeader("From", email)
 	msg.SetHeader("To", email)
@@ -172,7 +173,7 @@ func sendMail(text string) error {
 }
 
 func GetWeather(c *fiber.Ctx) error {
-	serviceKey := config.Config("API_SERVICE_KEY")
+	serviceKey := os.Getenv("API_SERVICE_KEY")
 	// Make the GET request to the API
 	url := "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?"
 	numOfRows := c.Query("numOfRows")
